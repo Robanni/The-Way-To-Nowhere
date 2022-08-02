@@ -11,8 +11,18 @@ public class MainPlayer : MonoBehaviour
     {
         inventory = new Inventory();
         uiInventory.setInventory(inventory);
-    }
 
+        ItemWorld.SpawnItemWorld(new Vector2(1, 1), new Item { itemType = Item.ItemType.HealthPotion, itemAmount = 1 });
+    }
+    private void OnTriggerEnter2D(Collider2D collision)
+    {
+        ItemWorld itemWorld = collision.GetComponent<ItemWorld>();
+        if(itemWorld!= null)
+        {
+            inventory.addItem(itemWorld.GetItem);
+            itemWorld.SelfDestroy();
+        }
+    }
     // Update is called once per frame
     void Update()
     {

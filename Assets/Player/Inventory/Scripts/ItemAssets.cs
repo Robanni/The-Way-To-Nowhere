@@ -11,6 +11,8 @@ public class ItemAssets : MonoBehaviour
         Instance = this;
     }
 
+    public Transform prefubItemWorld;
+
     public Sprite sword;
     public Sprite HealthPotion;
 }

@@ -23,16 +23,24 @@ public class UI_Inventory : MonoBehaviour
     public void setInventory(Inventory inventory)
     {
         this.inventory = inventory;
+        inventory.onItemListChanged += Inventory_OnItemListChanged;
         refreshItemList();
     }
+
+    private void Inventory_OnItemListChanged(object sender, System.EventArgs e){
+        refreshItemList();
+    }
+
     public void refreshItemList()
     {
         List < Item > inventoryItems = inventory.GetItemList();
 
-        for(int i = 0; i < inventorySlots.Count; i++)
+        for(int i = 0; i < inventoryItems.Count; i++)
         {
-            uiButtons[i].Find("ItemImage").GetComponent<Image>().sprite = inventoryItems[i].GetSprite();
-            uiButtons[i].Find("ItemImage").GetComponent<Image>().enabled = true;
+            
+                uiButtons[i].Find("ItemImage").GetComponent<Image>().sprite = inventoryItems[i].GetSprite();
+                uiButtons[i].Find("ItemImage").GetComponent<Image>().enabled = true;
+            
         }
     }
 }
