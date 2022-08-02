@@ -12,15 +12,23 @@ public class MainPlayer : MonoBehaviour
         inventory = new Inventory();
         uiInventory.setInventory(inventory);
 
-        ItemWorld.SpawnItemWorld(new Vector2(1, 1), new Item { itemType = Item.ItemType.HealthPotion, itemAmount = 1 });
+        for (int i = 0; i < 6; i++)
+        ItemWorld.SpawnItemWorld(new Vector2(i, 1), new Item { itemType = Item.ItemType.HealthPotion, itemAmount = 1 });
     }
     private void OnTriggerEnter2D(Collider2D collision)
     {
         ItemWorld itemWorld = collision.GetComponent<ItemWorld>();
-        if(itemWorld!= null)
+        Debug.Log(inventory.IsFull);
+        Debug.Log("count of inventory:" + inventory.GetItemList().Count);
+        if (itemWorld!= null)
         {
-            inventory.addItem(itemWorld.GetItem);
-            itemWorld.SelfDestroy();
+            if(!inventory.IsFull)
+            {
+                inventory.addItem(itemWorld.GetItem);
+                itemWorld.SelfDestroy();
+                Debug.Log("count of inventory:" + inventory.GetItemList().Count);
+            }
+            
         }
     }
     // Update is called once per frame
