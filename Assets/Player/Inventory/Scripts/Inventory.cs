@@ -17,7 +17,7 @@ public class Inventory
     
     public void addItem(Item item)
     {
-        itemList.Add(item);
+        if(itemList.Count < 5) itemList.Add(item);
     }
     public List<Item> GetItemList()
     {

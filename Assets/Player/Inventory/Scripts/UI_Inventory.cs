@@ -7,17 +7,17 @@ public class UI_Inventory : MonoBehaviour
 {
     private Inventory inventory;
     private List<Transform> inventorySlots;
-    private List<Transform> uiItem;
+    private List<Transform> uiButtons;
 
     private void Awake()
     {
         inventorySlots = new List<Transform>();
-        uiItem = new List<Transform>();
+        uiButtons = new List<Transform>();
 
         for(int i = 0; i < 4; i++)
         {
             inventorySlots.Add(transform.Find(("InventorySlot_" + i)));
-            uiItem.Add( inventorySlots[i].Find("UI_Item"));
+            uiButtons.Add( inventorySlots[i].Find("UI_Item").Find("InventoryButton"));
         }
     }
     public void setInventory(Inventory inventory)
@@ -28,10 +28,11 @@ public class UI_Inventory : MonoBehaviour
     public void refreshItemList()
     {
         List < Item > inventoryItems = inventory.GetItemList();
+
         for(int i = 0; i < inventorySlots.Count; i++)
         {
-            uiItem[i].Find("ItemImage").GetComponent<Image>().sprite = inventoryItems[i].GetSprite();
-            uiItem[i].Find("ItemImage").GetComponent<Image>().enabled = true;
+            uiButtons[i].Find("ItemImage").GetComponent<Image>().sprite = inventoryItems[i].GetSprite();
+            uiButtons[i].Find("ItemImage").GetComponent<Image>().enabled = true;
         }
     }
 }

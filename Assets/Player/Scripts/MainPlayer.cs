@@ -7,7 +7,7 @@ public class MainPlayer : MonoBehaviour
     private Inventory inventory;
     [SerializeField] private UI_Inventory uiInventory;
     // Start is called before the first frame update
-    void Awake()
+    void Start()
     {
         inventory = new Inventory();
         uiInventory.setInventory(inventory);
