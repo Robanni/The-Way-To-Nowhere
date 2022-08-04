@@ -8,6 +8,7 @@ public class PlayerCombat : MonoBehaviour
     public Transform attackPoint;
     public LayerMask enemyLayer;
     public float attackRange = 0.3f;
+    private int damage = 2;
 
     private Animator playerAnimator;
     
@@ -31,7 +32,7 @@ public class PlayerCombat : MonoBehaviour
     
         foreach(Collider2D enemy in hitEnemys)
         {
-            Debug.Log("We hit" + enemy.name);
+            enemy.GetComponent<BaseEnemy>().TakeDamage(damage);
         }
     }
 }
