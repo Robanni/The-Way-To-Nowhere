@@ -4,7 +4,8 @@ using UnityEngine;
 
 public class EnemyAttack : MonoBehaviour
 {
-    public float attackRange = 0.4f;
+    private float attackRange;
+    private int attackDamage;
     public Transform attackPoint;
 
     public LayerMask layerPlayers;
@@ -12,7 +13,8 @@ public class EnemyAttack : MonoBehaviour
 
     private void Start()
     {
-
+        attackDamage = GetComponent<Enemy_1>().Damage;
+        attackRange = GetComponent<Enemy_1>().AttackRange;
     }
 
     private void OnCollisionEnter2D(Collision2D collision)
@@ -30,10 +32,8 @@ public class EnemyAttack : MonoBehaviour
         {
             if(player != null)
             {
-                player.GetComponent<PlayerController>().TakeDamage(3);
-            }
-            
+                player.GetComponent<PlayerController>().TakeDamage(attackDamage);
+            }            
         }
     }
-
 }
