@@ -8,8 +8,10 @@ public class Enemy_1 : BaseEnemy
     void Start()
     {
         ApplyEnemyData();
+        
     }
 
+    
     public override void TakeDamage(int damage)
     {
         maxHealth -= damage;
@@ -18,5 +20,6 @@ public class Enemy_1 : BaseEnemy
             Destroy(gameObject);
         }
     }
+    
 
 }

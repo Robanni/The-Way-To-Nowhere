@@ -12,10 +12,14 @@ public class PlayerController : MonoBehaviour
 
     private Animator playerAnimator;
 
+    private int maxHealth = 20;
+    [SerializeField] int currentHealth;
+
     void Start()
     {
         playerAnimator = GetComponent<Animator>();
         playerRidgiedBody = GetComponent<Rigidbody2D>();
+        currentHealth = maxHealth;
     }
 
     // Update is called once per frame
@@ -37,5 +41,13 @@ public class PlayerController : MonoBehaviour
 
         playerRidgiedBody.MovePosition(playerRidgiedBody.position + diraction * speed * Time.fixedDeltaTime);
         /*Taking position of player and adding diraction from keyboard multiplyed by speed and fixedDeltaTime*/
+    }
+
+    public void TakeDamage(int damage)
+    {
+        currentHealth -= damage;
+
+        if(currentHealth <= 0) Destroy(gameObject);
+        Debug.Log(currentHealth);
     }
 }
