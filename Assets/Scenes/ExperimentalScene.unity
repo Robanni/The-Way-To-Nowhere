@@ -224,6 +224,10 @@ PrefabInstance:
       propertyPath: m_LocalEulerAnglesHint.z
       value: 0
       objectReference: {fileID: 0}
+    - target: {fileID: 1210243018927219812, guid: 6cbfdeb0967d1e74fa20ade6bcac1403, type: 3}
+      propertyPath: m_BodyType
+      value: 1
+      objectReference: {fileID: 0}
     - target: {fileID: 1210243018927219814, guid: 6cbfdeb0967d1e74fa20ade6bcac1403, type: 3}
       propertyPath: m_Name
       value: MainPlayer
@@ -1983,5 +1987,6 @@ PrefabInstance:
       propertyPath: m_TagString
       value: Enemeis
       objectReference: {fileID: 0}
-    m_RemovedComponents: []
+    m_RemovedComponents:
+    - {fileID: 285461889575617003, guid: 668110bb624daf14f97f29df1429a0fc, type: 3}
   m_SourcePrefab: {fileID: 100100000, guid: 668110bb624daf14f97f29df1429a0fc, type: 3}

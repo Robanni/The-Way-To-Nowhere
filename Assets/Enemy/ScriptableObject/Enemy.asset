@@ -14,4 +14,5 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   maxHealth: 10
   damage: 2
+  attackRange: 0.6
   sprite: {fileID: -557482779, guid: 393318223ce2ccd4ba3a4df45ef07ce2, type: 3}
