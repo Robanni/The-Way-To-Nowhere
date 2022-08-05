@@ -1983,5 +1983,6 @@ PrefabInstance:
       propertyPath: m_TagString
       value: Enemeis
       objectReference: {fileID: 0}
-    m_RemovedComponents: []
+    m_RemovedComponents:
+    - {fileID: 285461889575617003, guid: 668110bb624daf14f97f29df1429a0fc, type: 3}
   m_SourcePrefab: {fileID: 100100000, guid: 668110bb624daf14f97f29df1429a0fc, type: 3}

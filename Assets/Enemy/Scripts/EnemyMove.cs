@@ -19,11 +19,13 @@ public class EnemyMove : StateMachineBehaviour
 
     public override void OnStateUpdate(Animator animator, AnimatorStateInfo stateInfo, int layerIndex)
     {
+        Vector2 target = playerTransform.position;
 
-        Vector2 target = new Vector2(playerTransform.position.x, playerTransform.position.y);
-        Vector2 movePossition = Vector2.MoveTowards(enemyRigidbody.position, target, speed * Time.fixedDeltaTime);
-
-        enemyRigidbody.MovePosition(movePossition);
+        if (Vector2.Distance(enemyRigidbody.transform.position, playerTransform.position) > attackRange * 0.9)
+        {
+            Vector2 movePossition = Vector2.MoveTowards(enemyRigidbody.position, target, speed * Time.fixedDeltaTime);
+            enemyRigidbody.MovePosition(movePossition);
+        }
 
         if (Vector2.Distance(enemyRigidbody.transform.position, playerTransform.position)<= attackRange)
         {
