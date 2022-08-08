@@ -34,13 +34,35 @@ public class UI_Inventory : MonoBehaviour
     public void refreshItemList()
     {
         List < Item > inventoryItems = inventory.GetItemList();
+        if (inventoryItems.Count == 0) return;
 
-        for(int i = 0; i < inventoryItems.Count; i++)
+        for (int i = 0; i < uiButtons.Count; i++)
         {
-            
-                uiButtons[i].Find("ItemImage").GetComponent<Image>().sprite = inventoryItems[i].GetSprite();
-                uiButtons[i].Find("ItemImage").GetComponent<Image>().enabled = true;
-            
+            try
+            {
+                if (inventoryItems[i] != null)
+                {
+                    uiButtons[i].Find("ItemImage").GetComponent<Image>().sprite = inventoryItems[i].GetSprite();
+                    uiButtons[i].Find("ItemImage").GetComponent<Image>().enabled = true;
+                    continue;
+                }
+            }
+            catch { }
+            uiButtons[i].Find("ItemImage").GetComponent<Image>().sprite = null;
+            uiButtons[i].Find("ItemImage").GetComponent<Image>().enabled = false;
+        }
+    }
+
+    public void itemSelected(GameObject sender)
+    {
+        foreach(Transform button in uiButtons)
+        {
+            if (button.gameObject.Equals(sender))
+            {
+                button.Find("ItemImage").GetComponentInChildren<Image>().sprite = null;
+                button.Find("ItemImage").GetComponentInChildren<Image>().enabled = false;
+                inventory.removeItemFormList( uiButtons.IndexOf(button));
+            }
         }
     }
 }

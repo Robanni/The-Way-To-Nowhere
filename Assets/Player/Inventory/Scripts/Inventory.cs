@@ -1,6 +1,7 @@
 using System;
 using System.Collections;
 using System.Collections.Generic;
+using UnityEngine.Events;
 using UnityEngine;
 
 public class Inventory
@@ -10,8 +11,11 @@ public class Inventory
     private bool isFull = false;
 
     public event EventHandler onItemListChanged;
+    public OnItemUsedEvent onItemUsed;
+
     public Inventory()
     {
+        onItemUsed = new OnItemUsedEvent();
         itemList = new List<Item>();
     }
 
@@ -24,9 +28,18 @@ public class Inventory
         }
         if (itemList.Count == 4) isFull = true;
     }
+    public void removeItemFormList(int index)
+    {
+        onItemUsed.Invoke((itemList[index]));
+        itemList.RemoveAt(index);
+        if (itemList.Count!= 4) isFull = false;
+        onItemListChanged?.Invoke(this, EventArgs.Empty);
+    }
     public bool IsFull { get { return isFull; } }
     public List<Item> GetItemList()
     {
         return itemList;
     }
+    
 }
+public class OnItemUsedEvent : UnityEvent<Item> { }
